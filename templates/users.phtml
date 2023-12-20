@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+<div class="container">
+    <h1 class="text-center">Список пользователей</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>E-mail</th>
+            <th>JSON</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+        <tr>
+            <td><a href="/users/{{ user.id }}">{{ user.id }}</a></td>
+            <td>{{ user.name }}</td>
+            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            <td><a href="/api/users/{{ user.id }}">JSON</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <a href="/welcome" class="btn btn-primary btn-lg rounded-pill">Вернуться на главную</a>
+    </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
