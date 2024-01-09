@@ -34,6 +34,11 @@ $app->delete('/api/users/{userId}', function ($request, $response) {
     return $response -> withStatus(204);
 });
 
+$app->get('/add_user_token', function (Request $request, Response $response) use ($app) {
+    setcookie('access', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdHQiOiJhY2Nlc3MiLCJleHAiOjE3MDM1MTA3MjQsImlhdCI6MTcwMzUwNzEyNC', time() + (24 * 60 * 60), "/");
+    return $response->withStatus(302)->withHeader('Location', '/users');
+});
+
 $app->get('/users', function (Request $request, Response $response, array $args) use ($container) {
     $faker = Factory::create();
     $users = [];
